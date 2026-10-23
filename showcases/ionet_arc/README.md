@@ -402,9 +402,11 @@ money yet. The limits and risks above apply.
 
 Run every command from the repository root.
 
-**Install from PyPI (macOS and Linux).** No clone and no Rust build. The package carries the
-two helper binaries. It needs [uv](https://docs.astral.sh/uv/). This path exists after the first
-`buyer-v*` release of the package; see `.github/workflows/release-buyer.yml`.
+**Install from PyPI (macOS on Apple Silicon, Linux on x86-64 and ARM64).** No clone and no Rust
+build. The package carries the two helper binaries. It needs [uv](https://docs.astral.sh/uv/).
+This path exists after the first `buyer-v*` release of the package. The
+[`warrant-buyer`](https://github.com/mnemonik-xyz/warrant-buyer) repository builds and publishes
+it. It takes the Python code from a pinned commit of this repository.
 
 ```bash
 uvx warrant-buyer init      # new wallet, keys, manifest and the MCP client configuration
