@@ -1,0 +1,30 @@
+# Build context filter for Dockerfile (BuildKit reads <Dockerfile>.dockerignore
+# next to the Dockerfile; the legacy builder ignores this file, so always build
+# with DOCKER_BUILDKIT=1). The context is the repository root.
+#
+# Deny everything, then allow only what Dockerfile copies. This keeps
+# .git, .venv, .core and every key or env file out of the context.
+*
+
+# Pinned core release: the lock file and the script that downloads and verifies it.
+!core.lock
+!scripts/fetch_core.py
+
+# Seller application: the explicit COPY list plus requirements.txt.
+!showcases/ionet_arc/__init__.py
+!showcases/ionet_arc/seller_mcp_server.py
+!showcases/ionet_arc/adapter.py
+!showcases/ionet_arc/escrow.py
+!showcases/ionet_arc/requirements.txt
+
+# Never send keys, env files or bytecode, even inside allowed paths.
+**/.core
+**/.keys
+**/.env
+**/.env.*
+**/*.key
+**/*.pem
+**/__pycache__
+**/*.pyc
+**/.venv
+showcases/ionet_arc/config/mainnet-*
