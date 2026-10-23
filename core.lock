@@ -1,0 +1,29 @@
+{
+  "assets": {
+    "warrant-contracts-0.1.1.tar.gz": "2d5b1c27e8e6d9670364f8dd234841bcae48ff19616f8ff3ff59e054feb26e83",
+    "warrant-host-0.1.1-x86_64-unknown-linux-gnu.tar.gz": "d60cf7c2037f638a145b3f0ba248306954211900ac8da9cb1ef7a01f635ab4c5",
+    "warrant-tools-0.1.1-aarch64-apple-darwin.tar.gz": "013aa821ac33f9eb0dd11ee60e338d965bbb4d8e0b2ad36228f4f98c02ce2ef8",
+    "warrant-tools-0.1.1-aarch64-unknown-linux-musl.tar.gz": "0d62abee83d8f6fc542666ba14ffaaeeb4d3e5cb756cb9c6f11250e35f601bae",
+    "warrant-tools-0.1.1-x86_64-unknown-linux-musl.tar.gz": "61b18f13b82bd80b0d0dac7a911721db4f91e8f9faea4e64a2d5f2fb83a4d993"
+  },
+  "commit": "9a98a1682a4a8b0f929c4c3e224cbf59c7f35f1f",
+  "deployed_code_hashes": {
+    "JournalVerifier": "0x37d4d7a7aaa4f1d66fa4b3fe7cf6dfb41d4500f43ab441efcd4e03651ad83789",
+    "ReceiptClaimVerifier": "0xe6d6e9cb9e45831bab97d78f4da770b1fa629f7befb69c6820348f4d5f6fdfd7",
+    "TaskEscrow": "0x5836e264a939f70bc487e47ec0098438f17055eaa8db396b286e8231a16fe7e0",
+    "TestToken": "0x86a581a8c8f202519b391e7903a43ec491dd665583c7c8c0c2e47385b1545015"
+  },
+  "image_ids": {
+    "invoice": "0x11d11026f4b4bb9ed06b65557dfd4a68fcce3314ab1bcd2ed80124d4bd826e71",
+    "solver": "0x56d9ff10f85f9f023a32c632dcd11ae95a9cd7024d34e4f489c1b392a299bff2",
+    "task": "0xba0fa1e44827421998a79232e7e1c63ae85e9998ea4b47149da4290804a29716"
+  },
+  "repo": "mnemonik-xyz/policy-execution",
+  "tag": "core-v0.1.1",
+  "toolchain": {
+    "foundry": "v1.8.4",
+    "r0vm": "3.0.5",
+    "rust": "1.88.0",
+    "solc": "0.8.28"
+  }
+}
