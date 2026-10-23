@@ -315,27 +315,30 @@ How the open seller protects itself:
 ### Mainnet addresses
 
 All contracts below are published on Arc mainnet (chain ID `5042`). Each address links to the
-[Arc explorer](https://explorer.arc.io). The sources are in this repository.
+[Arc explorer](https://explorer.arc.io). The contract sources are in the
+[`policy-execution`](https://github.com/mnemonik-xyz/policy-execution) repository; the links below use the
+`core-v0.1.1` tag, which is the release this repository pins. The seller's published manifest is
+[`records/seller-public-manifest.json`](records/seller-public-manifest.json).
 
 **Seller MCP (used by `https://seller.mnemonik.xyz/mcp` now)**
 
-| Role / Contract | Address or key | Source in this repository |
+| Role / Contract | Address or key | Source in policy-execution |
 | --- | --- | --- |
-| **TaskEscrow** (no-proof escrow) | [`0x5fae10ac58bf90c17f516292883a4f17c0768002`](https://explorer.arc.io/address/0x5fae10ac58bf90c17f516292883a4f17c0768002) | [`contracts/src/TaskEscrow.sol`](../../contracts/src/TaskEscrow.sol) |
-| **JournalVerifier** (test double) | [`0xdfe2fdb1d9942af02f99facfaa5b22d0031ad76c`](https://explorer.arc.io/address/0xdfe2fdb1d9942af02f99facfaa5b22d0031ad76c) | [`contracts/test/PolicyExecutionVault.t.sol`](../../contracts/test/PolicyExecutionVault.t.sol) (`JournalVerifier`) |
+| **TaskEscrow** (no-proof escrow) | [`0x5fae10ac58bf90c17f516292883a4f17c0768002`](https://explorer.arc.io/address/0x5fae10ac58bf90c17f516292883a4f17c0768002) | [`contracts/src/TaskEscrow.sol`](https://github.com/mnemonik-xyz/policy-execution/blob/core-v0.1.1/contracts/src/TaskEscrow.sol) |
+| **JournalVerifier** (test double) | [`0xdfe2fdb1d9942af02f99facfaa5b22d0031ad76c`](https://explorer.arc.io/address/0xdfe2fdb1d9942af02f99facfaa5b22d0031ad76c) | [`contracts/test/PolicyExecutionVault.t.sol`](https://github.com/mnemonik-xyz/policy-execution/blob/core-v0.1.1/contracts/test/PolicyExecutionVault.t.sol) (`JournalVerifier`) |
 | **USDC Token** | [`0x3600000000000000000000000000000000000000`](https://explorer.arc.io/address/0x3600000000000000000000000000000000000000) | Arc system token |
 | **Seller** (payout wallet) | [`0xb8202bebb6d8a0a822a56c0062632325c3923eeb`](https://explorer.arc.io/address/0xb8202bebb6d8a0a822a56c0062632325c3923eeb) | |
 | **Registry public key** | `0x02264b8d8cdb5b5a45736a4e3f679966966f39979b16794f08530c1ac6d77ee034` | |
 
 **Proven solver canary (real Groth16 proof, settled 2026-10-16)**
 
-| Role / Contract | Address | Source in this repository |
+| Role / Contract | Address | Source in policy-execution |
 | --- | --- | --- |
-| **SolverBountyEscrow** | [`0xbe6b87c0d2a1a7c28207cdecd4f6c68ffe4122e0`](https://explorer.arc.io/address/0xbe6b87c0d2a1a7c28207cdecd4f6c68ffe4122e0) | [`contracts/src/SolverBountyEscrow.sol`](../../contracts/src/SolverBountyEscrow.sol) |
+| **SolverBountyEscrow** | [`0xbe6b87c0d2a1a7c28207cdecd4f6c68ffe4122e0`](https://explorer.arc.io/address/0xbe6b87c0d2a1a7c28207cdecd4f6c68ffe4122e0) | [`contracts/src/SolverBountyEscrow.sol`](https://github.com/mnemonik-xyz/policy-execution/blob/core-v0.1.1/contracts/src/SolverBountyEscrow.sol) |
 | **RiscZeroGroth16Verifier** | [`0xc4fb7340971e8ad6925f16c2a275cd13cb7bec99`](https://explorer.arc.io/address/0xc4fb7340971e8ad6925f16c2a275cd13cb7bec99) | RISC Zero `risc0-ethereum` v3.0.0 |
 
 The deployment was built from commit `fac8b909893cf168157d84e51ce103fdb0351299`. The deploy record is
-[`deployment.json`](../../solver-bounty/canary/mainnet/20261016T202706Z/deployment.json) in the
+[`deployment.json`](https://github.com/mnemonik-xyz/policy-execution/blob/core-v0.1.1/solver-bounty/canary/mainnet/20261016T202706Z/deployment.json) in the
 evidence folder.
 
 **Warrant usage on Arc mainnet: transactions**
