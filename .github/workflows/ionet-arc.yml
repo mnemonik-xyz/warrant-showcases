@@ -1,0 +1,43 @@
+name: io.net Arc showcase
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  showcase:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+      - name: Lint seller Dockerfile
+        uses: hadolint/hadolint-action@v3.5.0
+        with:
+          dockerfile: showcases/ionet_arc/Dockerfile
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1  # v6.3.0
+        with:
+          python-version: '3.12'
+      - run: pip install -r showcases/ionet_arc/requirements-dev.txt
+      - name: Lint Python sources
+        run: ruff check showcases scripts tests
+      - name: Test the core fetch script
+        run: python -m unittest discover tests -v
+      - name: Download the pinned Warrant core release
+        # core.lock names the release and the SHA-256 of each asset. The script stops on a mismatch.
+        run: |
+          python scripts/fetch_core.py fetch
+          python scripts/fetch_core.py verify
+      - name: Prepare test authority keys and credentials
+        run: python showcases/ionet_arc/init.py
+      - name: Run io.net Arc showcase test suite
+        run: python -m unittest discover showcases/ionet_arc -v
+      - name: Check CLI imports
+        run: |
+          python scripts/ionet-showcase.py --help
+          python -m showcases.ionet_arc.seller_mcp_server --help
+          python -m showcases.ionet_arc.buyer_test_agent --help
