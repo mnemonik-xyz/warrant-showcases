@@ -69,10 +69,35 @@ python3 showcases/amnezia_arc/cli.py --email "user@example.com" --password "secr
 
 ---
 
-## 3. Automated Unit Tests
+## 3. Deploying a VPS (Dry-Run and Live)
+
+The `deploy` function in [`amnezia_adapter.py`](amnezia_adapter.py) automates the end-to-end
+provisioning flow: clearing cart, adding target plan, configuring OS options, and checking out.
+
+### Validate Deployment in Dry-Run Mode
+
+Simulate order creation and verify checkout totals without submitting real payment:
+
+```bash
+python3 showcases/amnezia_arc/cli.py --deploy 15 --dry-run
+```
+
+With budget limit preflight check and state persistence:
+
+```bash
+python3 showcases/amnezia_arc/cli.py --deploy 15 --dry-run --max-cost-usd 6.00 --state state.json
+```
+
+---
+
+## 4. Automated Unit Tests
 
 Run the offline unit tests with mocked responses:
 
 ```bash
-python3 -m unittest showcases.amnezia_arc.test_amnezia_adapter -v
+# Run test module directly or via unittest discovery
+python3 -m unittest discover showcases/amnezia_arc -v
+
+# Or run the test file directly
+python3 showcases/amnezia_arc/test_amnezia_adapter.py
 ```
