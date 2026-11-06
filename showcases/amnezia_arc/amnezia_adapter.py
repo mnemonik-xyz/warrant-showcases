@@ -143,11 +143,6 @@ class AmneziaClient:
                 body = resp.read().decode("utf-8", errors="replace")
                 return status, final_url, body
         except urllib.error.HTTPError as err:
-            err_body = ""
-            try:
-                err_body = err.read().decode("utf-8", errors="replace")
-            except Exception:
-                pass
             raise AmneziaError(f"HTTP {err.code} from {url}: {err.reason}") from err
         except Exception as err:
             raise AmneziaError(f"Failed to connect to {url}: {err}") from err
@@ -157,7 +152,7 @@ class AmneziaClient:
         _, _, html = self._request(STORE_PATH)
 
         pattern = re.compile(
-            r'<h3[^>]*>([^<]+)</h3>\s*'
+            r"<h3[^>]*>([^<]+)</h3>\s*"
             r'<div class="vps-card__price" id="product(\d+)-price">\s*'
             r'<span class="vps-card__amount">\$?([0-9.]+)</span>\s*'
             r'<span class="vps-card__cycle">([^<]+)</span>[\s\S]*?'
@@ -241,7 +236,8 @@ class AmneziaClient:
 
         # Extract credit balance from the dashboard tile
         balance_m = re.search(
-            r'<div[^>]*class=["\']stat["\'][^>]*>(\$[0-9,.]+(?:\s*USD)?)</div>\s*<div[^>]*class=["\']title["\']>Current Balance</div>',
+            r'<div[^>]*class=["\']stat["\'][^>]*>(\$[0-9,.]+(?:\s*USD)?)</div>\s*'
+            r'<div[^>]*class=["\']title["\']>Current Balance</div>',
             html,
             re.IGNORECASE,
         )
@@ -258,7 +254,10 @@ class AmneziaClient:
         active_services = int(services_m.group(1)) if services_m else 0
 
         # Extract name if available
-        name_m = re.search(r'<div[^>]*class=["\'][^"\']*user-info["\'][^>]*>[\s\S]*?<strong>([^<]+)</strong>', html)
+        name_m = re.search(
+            r'<div[^>]*class=["\'][^"\']*user-info["\'][^>]*>[\s\S]*?<strong>([^<]+)</strong>',
+            html,
+        )
         user_name = name_m.group(1).strip() if name_m else None
 
         return AccountInfo(
@@ -280,7 +279,11 @@ class AmneziaClient:
                 continue
             id_m = re.search(r"id=(\d+)", row)
             name_m = re.search(r"<strong>([^<]+)</strong>", row)
-            status_m = re.search(r'<span[^>]*class=["\'][^"\']*status-([a-z]+)["\'][^>]*>([^<]+)</span>', row, re.IGNORECASE)
+            status_m = re.search(
+                r'<span[^>]*class=["\'][^"\']*status-([a-z]+)["\'][^>]*>([^<]+)</span>',
+                row,
+                re.IGNORECASE,
+            )
 
             services.append(
                 {

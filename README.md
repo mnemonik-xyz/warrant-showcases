@@ -9,7 +9,8 @@ compiled binaries and compiled contracts, not source.
 
 | Showcase | What it is |
 |---|---|
-| [`showcases/ionet_arc`](showcases/ionet_arc/README.md) | A buyer agent buys a GPU transcription session from an io.net seller. Payment goes through an escrow on Arc. |
+| [`ionet_arc`](showcases/ionet_arc/README.md) | GPU transcription on io.net with escrow on Arc. |
+| [`amnezia_arc`](showcases/amnezia_arc/README.md) | Autonomous VPS on Amnezia with escrow on Arc. |
 
 ## The pinned core
 
@@ -34,7 +35,7 @@ python scripts/fetch_core.py lock core-v0.1.1   # write core.lock from a publish
 ```sh
 pip install -r showcases/ionet_arc/requirements-dev.txt
 python scripts/fetch_core.py fetch
-python showcases/ionet_arc/init.py          # test keys and credentials; changes tracked config files
+python showcases/ionet_arc/init.py          # test keys and credentials; changes config files
 python -m unittest discover tests
 python -m unittest discover showcases/ionet_arc
 ```

@@ -1,4 +1,4 @@
-name: io.net Arc showcase
+name: CI
 
 on:
   push:
@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  showcase:
+  ci:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
@@ -23,8 +23,10 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install -r showcases/ionet_arc/requirements-dev.txt
-      - name: Lint Python sources
+      - name: Lint Python sources across all showcases
         run: ruff check showcases scripts tests
+      - name: Run Amnezia showcase test suite
+        run: python -m unittest discover showcases/amnezia_arc -v
       - name: Test the core fetch script
         run: python -m unittest discover tests -v
       - name: Download the pinned Warrant core release
@@ -41,3 +43,4 @@ jobs:
           python scripts/ionet-showcase.py --help
           python -m showcases.ionet_arc.seller_mcp_server --help
           python -m showcases.ionet_arc.buyer_test_agent --help
+          python showcases/amnezia_arc/cli.py --help

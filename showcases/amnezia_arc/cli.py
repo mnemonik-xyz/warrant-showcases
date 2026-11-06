@@ -20,6 +20,11 @@ from amnezia_adapter import AmneziaAuthError, AmneziaClient, AmneziaError, load_
 
 
 def main() -> int:
+    env_parser = argparse.ArgumentParser(add_help=False)
+    env_parser.add_argument("--env-file", help="Path to .env file")
+    pre_args, _ = env_parser.parse_known_args()
+    loaded = load_env(pre_args.env_file)
+
     parser = argparse.ArgumentParser(
         description="Amnezia Hosting (my.amnezia.host) CLI: Web Login and Hardware Catalog"
     )
@@ -27,9 +32,6 @@ def main() -> int:
         "--env-file",
         help="Path to .env file containing AMNEZIA_EMAIL and AMNEZIA_PASSWORD",
     )
-    # Parse env-file first so environment variables are populated
-    pre_args, _ = parser.parse_known_args()
-    loaded = load_env(pre_args.env_file)
 
     parser.add_argument(
         "--email",

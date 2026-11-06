@@ -4,12 +4,11 @@ from __future__ import annotations
 
 import unittest
 from decimal import Decimal
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 from showcases.amnezia_arc.amnezia_adapter import (
     AmneziaAuthError,
     AmneziaClient,
-    AmneziaError,
     load_env,
 )
 
@@ -129,7 +128,7 @@ class AmneziaClientTests(unittest.TestCase):
                 "# Test comment\n"
                 "AMNEZIA_TEST_KEY_1=sample_val\n"
                 "AMNEZIA_TEST_KEY_2='quoted_val'\n"
-                "AMNEZIA_TEST_KEY_3=\"double_quoted\"\n"
+                'AMNEZIA_TEST_KEY_3="double_quoted"\n'
             )
 
             loaded = load_env(env_file)
